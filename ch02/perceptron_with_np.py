@@ -58,13 +58,13 @@ print(OR(1,1))
 
 # 异或门电路：将或门电路的输出和与非门电路的输出，作为与门电路的输入
 # 从而得到异或门电路
-def NOR(x1, x2):
+def XOR(x1, x2):
     or_output = OR(x1, x2)
     nand_output = NAND(x1 ,x2)
     and_output = AND(or_output, nand_output)
     return and_output
 print('异或的结果')
-print(NOR(0,0))
-print(NOR(0,1))
-print(NOR(1,0))
-print(NOR(1,1))
+print(XOR(0,0))
+print(XOR(0,1))
+print(XOR(1,0))
+print(XOR(1,1))
