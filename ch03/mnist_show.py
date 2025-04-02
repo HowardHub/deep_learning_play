@@ -21,6 +21,6 @@ print(label) # 5
 print(img.shape)          # (784,)
 img = img.reshape(28, 28) # 把图像的形状变成原来的尺寸
 print(img.shape)          # (28, 28)
-
+print(img)
 img_show(img)
 
