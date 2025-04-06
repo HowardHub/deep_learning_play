@@ -15,6 +15,26 @@
 
 
 
+🤖 四、深度学习核心概念
+	1.	神经网络基础
+	•	感知机、激活函数（ReLU, Sigmoid, Tanh）
+	•	多层感知机（MLP）
+	2.	前向传播与反向传播
+	3.	梯度下降与优化器
+	•	SGD、Adam、RMSProp 等
+	4.	损失函数
+	•	分类问题用交叉熵
+	•	回归问题用均方误差
+	5.	批次（batch）、epoch、学习率（learning rate）
+	6.	Dropout、Batch Normalization
+
+
+📦 五、常见网络结构（可作为后续学习重点）
+	1.	卷积神经网络（CNN）：处理图像任务
+	2.	循环神经网络（RNN）、LSTM / GRU：处理序列数据
+	3.	Transformer模型：用于NLP任务，现在非常热门
+	4.	自编码器（Autoencoder）、生成对抗网络（GAN）
+
 
 
 

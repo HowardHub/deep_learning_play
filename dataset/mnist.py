@@ -72,14 +72,28 @@ def _convert_numpy():
     return dataset
 
 def init_mnist():
-    # download_mnist()
+    # download_mnist() #因为原URL上已经无法下载4个gz文件，所以舍去下载。
     dataset = _convert_numpy()
     print("Creating pickle file ...")
     with open(save_file, 'wb') as f:
         pickle.dump(dataset, f, -1)
     print("Done!")
 
+
+"""
+    假设输入：
+        X = np.array([3, 5, 9, 0])
+    调用 _change_one_hot_label(X) 会返回：
+        [
+            [0, 0, 0, 1, 0, 0, 0, 0, 0, 0],  # 类别 3
+            [0, 0, 0, 0, 0, 1, 0, 0, 0, 0],  # 类别 5
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 1],  # 类别 9
+            [1, 0, 0, 0, 0, 0, 0, 0, 0, 0]   # 类别 0
+        ]
+
+"""
 def _change_one_hot_label(X):
+    print(f'打印一个x[0]= {X[0]}')
     T = np.zeros((X.size, 10))
     for idx, row in enumerate(T):
         row[X[idx]] = 1
@@ -102,13 +116,13 @@ def load_mnist(normalize=True, flatten=True, one_hot_label=False):
     -------
     (训练图像, 训练标签), (测试图像, 测试标签)
     """
-    if not os.path.exists(save_file):
+    if not os.path.exists(save_file): #如果mnist.pkl不存在，则初始化数据集
         init_mnist()
         
-    with open(save_file, 'rb') as f:
+    with open(save_file, 'rb') as f: #加载数据集
         dataset = pickle.load(f)
     
-    if normalize:
+    if normalize: #归一化
         for key in ('train_img', 'test_img'):
             dataset[key] = dataset[key].astype(np.float32)
             dataset[key] /= 255.0
