@@ -1,6 +1,15 @@
 import random
 
 
+
+
+print('有趣的for，步长不是1的情况')
+for i in range(1, 100, 10):
+    print(i)
+
+
+
+
 """
     1.使用 while 循环打印 1 到 10（每行一个数字）。
 """
@@ -121,3 +130,9 @@ for char in word:
     if your_char == char:
         count += 1
 print('{}在{}中出现了{}次'.format(your_char, word, count))
+
+
+
+
+
+

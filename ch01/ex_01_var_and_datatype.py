@@ -47,3 +47,10 @@ print('%s，年龄 %d，成绩 %f' % (name, int(age), float(score))) # 改进：
 
 
 
+#格式话字符串
+# url = self.COMMENT_URL.format(xid = self.necessary_info['xid'], pid = self.necessary_info['pid'])
+COMMENT_URL = 'https://api-my.le.com/vcm/api/list?jsonp=jQuery19101625492025974723_1744435584367&type=video&rows=200&page=1&sort=&cid=2&source=1&xid={xid}&pid={pid}&ctype=cmt%2Cimg%2Cvote&listType=1&_=1744435584391'
+xid = '1233'
+pid = '456'
+print(COMMENT_URL.format(xid=xid, pid = pid)) #一定要写成xid=, pid=不然会报错。
+

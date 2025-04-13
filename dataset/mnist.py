@@ -93,7 +93,6 @@ def init_mnist():
 
 """
 def _change_one_hot_label(X):
-    print(f'打印一个x[0]= {X[0]}')
     T = np.zeros((X.size, 10))
     for idx, row in enumerate(T):
         row[X[idx]] = 1
@@ -120,7 +119,7 @@ def load_mnist(normalize=True, flatten=True, one_hot_label=False):
         init_mnist()
         
     with open(save_file, 'rb') as f: #加载数据集
-        dataset = pickle.load(f)
+        dataset = pickle.load(f) #dataset是一个字典变量
     
     if normalize: #归一化
         for key in ('train_img', 'test_img'):
@@ -140,3 +139,7 @@ def load_mnist(normalize=True, flatten=True, one_hot_label=False):
 
 if __name__ == '__main__':
     init_mnist()
+
+
+
+    

@@ -120,3 +120,17 @@ arr = np.array([4, 8, 12, 16, 20])
 arr = np.array([4, 8, 12, 16, 20])
 print(np.var(arr))
 print(np.std(arr))
+
+
+
+
+"""
+比较两个数组
+"""
+
+
+a = np.array([[1], [2], [3]])
+b = np.array([[4], [2], [6]])
+print('a==b等价于np.equal(a,b)')
+print(a==b)
+print(np.equal(a,b))
