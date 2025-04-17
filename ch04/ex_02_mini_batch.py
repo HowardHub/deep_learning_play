@@ -34,4 +34,3 @@ print(np.random.choice(60000, 10))
 
 
 
-

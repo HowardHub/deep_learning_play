@@ -98,3 +98,5 @@ print(f'不放回抽取：{sub_arr}')
 """
 a = np.random.permutation(10)
 print(a)
+
+
