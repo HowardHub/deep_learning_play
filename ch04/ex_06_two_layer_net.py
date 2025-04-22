@@ -24,6 +24,9 @@ from common.gradient import numerical_gradient
 
 """
 
+def sigmoid_grad(x):
+    return (1.0 - sigmoid(x)) * sigmoid(x)
+
 
 class TwoLayerNet:
     def __init__(self, input_size, hidden_size, output_size, weight_init_std=0.01):
@@ -74,30 +77,63 @@ class TwoLayerNet:
         return grads
 
 
+    def gradient(self, x, t):
+        W1, W2 = self.params['W1'], self.params['W2']
+        b1, b2 = self.params['b1'], self.params['b2']
+        batch_num = x.shape[0]
 
-net = TwoLayerNet(input_size=784, hidden_size=100, output_size=10)
-#params变量中保存了该神经网络所需的全部参数
-# print(net.params['W1'].shape) # (784, 100)
-# print(net.params['b1'].shape) # (100,)
-# print(net.params['W2'].shape) # (100, 10)
-# print(net.params['b2'].shape) # (10,)
+        # --- 前向传播 ---
+        a1 = np.dot(x, W1) + b1            # 隐藏层线性变换
+        z1 = sigmoid(a1)                   # 激活
+        a2 = np.dot(z1, W2) + b2           # 输出层线性变换
+        y = softmax(a2)                    # Softmax
 
-# #推理处理的实现
-# x = np.random.rand(100, 784)
-# y = net.predict(x)
+        # --- 反向传播 ---
+        # 输出层误差
+        dy = (y - t) / batch_num           # 对 cross_entropy_error 求导后的误差
+
+        # W2, b2 的梯度
+        grads = {}
+        grads['W2'] = np.dot(z1.T, dy)
+        grads['b2'] = np.sum(dy, axis=0)
+
+        # 隐藏层误差
+        dz1 = np.dot(dy, W2.T)
+        da1 = dz1 * z1 * (1 - z1)          # sigmoid 的导数：σ'(a)=σ(a)(1−σ(a))
+
+        # W1, b1 的梯度
+        grads['W1'] = np.dot(x.T, da1)
+        grads['b1'] = np.sum(da1, axis=0)
+
+        return grads
+ 
 
 
-#使用numerical_gradient()方法计算梯度后，梯度的信息将保存在grads变量中
-x = np.random.rand(100, 784) #伪输入数据（100个）
-t = np.random.rand(100, 10) #伪正确解标签（100个） 
-# print(t)
-grad = net.numerical_gradient(x, t) #计算梯度
+if __name__ == '__main__':
 
-print('求梯度结束')
+    net = TwoLayerNet(input_size=784, hidden_size=100, output_size=10)
+    #params变量中保存了该神经网络所需的全部参数
+    # print(net.params['W1'].shape) # (784, 100)
+    # print(net.params['b1'].shape) # (100,)
+    # print(net.params['W2'].shape) # (100, 10)
+    # print(net.params['b2'].shape) # (10,)
 
-print(grad['W1'].shape)
-print(grad['b1'].shape)
-print(grad['W2'].shape)
-print(grad['b2'].shape)
+    # #推理处理的实现
+    # x = np.random.rand(100, 784)
+    # y = net.predict(x)
+
+    #使用numerical_gradient()方法计算梯度后，梯度的信息将保存在grads变量中
+    x = np.random.rand(100, 784) #伪输入数据（100个）
+    t = np.random.rand(100, 10) #伪正确解标签（100个） 
+    # print(t)
+    grad = net.numerical_gradient(x, t) #计算梯度
+
+    print('求梯度结束')
+    print(grad['W1'].shape)
+    print(grad['b1'].shape)
+    print(grad['W2'].shape)
+    print(grad['b2'].shape)
+    
+
 
 

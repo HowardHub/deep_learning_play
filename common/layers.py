@@ -72,11 +72,11 @@ class SoftmaxWithLoss:
 
     def backward(self, dout=1):
         batch_size = self.t.shape[0]
-        if self.t.size == self.y.size:
-            dx = (self.y - self.t) / batch_size
-        else:
-            dx = self.y.copy()
-            dx[np.arange(batch_size), self.t] -= 1
+        if self.t.size == self.y.size: #当数据（标签）是 one-hot 向量时
+            dx = (self.y - self.t) / batch_size #除以 batch_size 是为了取平均值
+        else: #当数据是索引形式（如整数类别标签）时
+            dx = self.y.copy() #先复制 self.y 作为梯度的起点
+            dx[np.arange(batch_size), self.t] -= 1 #然后对每个样本的正确类别位置减 1
             dx = dx / batch_size
 
         return dx

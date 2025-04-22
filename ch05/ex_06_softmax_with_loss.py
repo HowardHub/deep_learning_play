@@ -15,7 +15,10 @@ from common.functions import softmax, cross_entropy_error
 
 class SoftmaxWithLoss:
     def __init__(self):
+        #（1）方便后续使用，比如查看训练状态
         self.loss = None #损失
+
+        #为了求梯度，所以保存这两项
         self.y = None #softmax的输出
         self.t = None #监督数据
 
@@ -27,19 +30,10 @@ class SoftmaxWithLoss:
     
     def backward(self, dout=1):
         batch_size = self.t.shape[0]
+        #不除的话，计算的就是总损失的梯度，而不是平均损失的梯度
         dx = (self.y - self.t) / batch_size
 
         return dx
-
-
-
-
-
-
-
-
-
-
 
 
 

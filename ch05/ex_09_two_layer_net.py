@@ -3,10 +3,10 @@ sys.path.append(os.pardir)
 
 import numpy as np
 from ex_03_relu import Relu
-from ex_04_affine import Affine
+from ch05.ex_05_affine import Affine
 from common.gradient import numerical_gradient
 from collections import OrderedDict
-from ex_05_softmax_with_loss import SoftmaxWithLoss
+from ch05.ex_06_softmax_with_loss import SoftmaxWithLoss
 
 
 
@@ -171,13 +171,6 @@ class TwoLayerNet:
 
         return grads
     
-
-
-
-
-
-
-
 
 
 

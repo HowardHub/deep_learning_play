@@ -54,10 +54,3 @@ print(cross_entropy_error(np.array(y), np.array(t)))
 
 
 
-
-
-
-
-
-
-

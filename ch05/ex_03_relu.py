@@ -19,6 +19,7 @@ class Relu:
     
         
     def backward(self, dout):
+        #dout为上游传递过来的值
         dout[self.mask] = 0
         dx = dout
         return dx
@@ -31,6 +32,8 @@ print(x)
 mask = (x < 0)
 print(mask)
 
-
+out = x.copy()
+out[mask] = 0
+print(out)
 
 

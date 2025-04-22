@@ -15,7 +15,7 @@ class AddLayer:
     
 
     def backward(self, dout):
-        #将上游传递过来的导数，原封不动地传递给下游
+        #dout为上游传递过来的值，将上游传递过来的导数，原封不动地传递给下游
         dx = dout * 1
         dy = dout *1
         return dx, dy

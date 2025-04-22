@@ -3,7 +3,7 @@ sys.path.append(os.pardir)
 import numpy as np
 
 from dataset.mnist import load_mnist
-from ex_06_two_layer_net import TwoLayerNet
+from ch05.ex_09_two_layer_net import TwoLayerNet
 
 
 

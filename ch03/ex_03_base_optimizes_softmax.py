@@ -15,11 +15,20 @@ def sigmoid(x):
 
 
 
+# 兼容向量和矩阵版本的softmax
 def softmax(x):
+    if x.ndim == 1:
+        c = np.max(x)
+        exp_x = np.exp(x - c)
+        sum_exp_x = np.sum(exp_x)
+        return exp_x / sum_exp_x
     c = np.max(x, axis=1, keepdims=True) #对每行求最大值
     exp_x = np.exp(x - c) #防止溢出
     sum_exp_x = np.sum(exp_x, axis=1, keepdims=True) #对每行求和
     return exp_x / sum_exp_x
+
+
+
 
 
 

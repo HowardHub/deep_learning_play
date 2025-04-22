@@ -58,3 +58,4 @@ print(np.sum(c))
 print('对bool数组求和')
 d = np.array([True, False, True, False,True])
 print(np.sum(d))
+

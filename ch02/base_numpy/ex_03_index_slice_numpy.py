@@ -49,6 +49,10 @@ print (a[...,1:])  # 第2列及剩下的所有元素
     print(names == 'Bob')
     print(scores[names == 'Bob']) # 获取Bob的四科成绩
 
+    这个不是 Python 普通 list 的操作，而是 NumPy 提供的功能，用在 NumPy 数组上：
+    arr[布尔数组] → 筛选出对应为 True 的位置
+    out[self.mask] = 0      
+
 
 
 花式索引：根据索引整型数组的值作为目标数组的某个轴的下标来取值。
